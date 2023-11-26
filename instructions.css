@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+body{
+    background-image: url("Assets/farm.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-family: 'Kaushan Script', cursive; */
+}
+
+.container{
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+

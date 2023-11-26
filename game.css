@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+html{
+    height: 100vh;
+}
+
+body{
+    background-image:url(Assets/farm.jpg) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kaushan Script', cursive;
+}
+
+#Game-container{
+}
+.info-container{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+
+}
+p{
+    margin: 0;
+}
+
+#game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 445px;
+    width: 445px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px grey;
+}
+.tile-container{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(8,1fr);
+    grid-gap: 5px;
+}
+.tile{
+    height: 50px;
+    width: 50px;
+}
+.cardvalue{
+    height: 50px;
+    width: 50px;
+}
+
+.tilefront,.tileback{
+    position: absolute;
+}
+.tilefront{
+    height: 50px;
+    width: 50px;
+    background-image: url(Assets/greentile.svg);
+    background-size: cover;
+}
+.tilefront.red{
+    background-image:url(Assets/redtile.svg)
+}
+.empty{
+    height: 50px;
+    width:50px;
+    background-color: grey;
+    border-radius:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tilefront{
+    /* display: none; */
+    
+}
+#nicknamedisplay{
+    font-size: 20px;
+}
+@media(max-width:500px){
+    .tile,.cardvalue,.empty,.tilefront{
+        height: 40px;
+        width: 40px;
+    }
+    #game{
+        height: 365px ;
+        width: 365px;
+    }   
+}
+.tilefront {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.tile:hover{
+    scale:1.1;
+}

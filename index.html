@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="header">
+        <h1>MineSweeper</h1>
+        <!-- <p>The goblin field</p> -->
+    </div>
+    <div id="form-container">
+        <div id="formdiv">
+<form action="/" id="form" method="get">
+           <div class="form-items"> 
+            <label for="name">Name: </label> <br>
+            <input type="text" id="name" placeholder="Enter your name" required> <br><br>
+           </div>        
+
+            <div class="form-items">
+            <label for="nickname">Nickname: </label><br>
+            <input type="text" id="nickname" placeholder="Enter your nickname" required><br><br>
+           </div>
+           
+            <div id="instructions" class="form-items">
+                <button> <a href="instructions.html">Instructions</a></button>
+            </div>
+           <div id="submitbtn"class="form-items">
+                <button onclick="saveinput()" id="submitbutton" type="submit">  PLAY </button>
+            </div>
+            
+        </form>
+        </div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
