@@ -1,3 +1,4 @@
+
 // form validation
 
 const form=document.getElementById('form')
@@ -15,7 +16,10 @@ submitbtn.addEventListener('click',(e)=>{
     localStorage.setItem('nickname',nickname)
 });
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    var opening = document.getElementById('opening');
+    opening.play();
+});
 
 // bombs.forEach((item)=>{
 //     item.addEventListener('click',()=>{
