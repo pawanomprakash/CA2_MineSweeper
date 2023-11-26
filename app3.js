@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var goblincackle = document.getElementById('goblincackle');
+    goblincackle.play();
+});
 function displayresults(){
     let timetaken=document.getElementById("timetaken");
     let noofclicks=document.getElementById("noofclicks");

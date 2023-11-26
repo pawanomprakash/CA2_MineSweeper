@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var backgroundmusic = document.getElementById('backgroundmusic');
     backgroundmusic.play();
 });
+
 // Display name and nickname
 function displayname() {
     let playername = document.getElementById("namedisplay");
@@ -14,17 +15,17 @@ function displayname() {
  let tiles = Array.from(document.getElementsByClassName("tile"));
  
  function shuffletiles(tiles) {
-    for (let i = tiles.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    for (let i=tiles.length-1;i>0;i--){
+        const j =Math.floor(Math.random()*(i + 1));
+        [tiles[i],tiles[j]]=[tiles[j],tiles[i]];
     }
     // console.log(tiles)
     return tiles;
  }
  function startgame() {
-    tiles = shuffletiles(tiles);
-    tiles.forEach((item, index) => {
-        item.style.order = index + 1;
+    tiles=shuffletiles(tiles);
+    tiles.forEach((item,index) => {
+        item.style.order=index+1;
     });
     return tiles
  }
@@ -40,9 +41,9 @@ function displayname() {
  } 
  console.log(board)
 
-let bombcontainers = [];
-for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
+let bombcontainers=[];
+for (let i=0;i<8;i++) {
+    for (let j=0;j<8;j++) {
         const tile = board[i][j];
         if (tile.classList.contains('bombcontainer')) {
             bombcontainers.push([i,j]);
@@ -51,13 +52,12 @@ for (let i = 0; i < 8; i++) {
 }
 console.log(bombcontainers);
 
-function incrementNearbyBombs(x, y) {
-    for (let i = x - 1; i <= x + 1; i++) {
-        for (let j = y - 1; j <= y + 1; j++) {
-            if (i >= 0 && i < 8 && j >= 0 && j < 8) {
+function incrementNearbyBombs(x,y) {
+    for (let i=x-1;i<=x+1;i++) {
+        for (let j=y-1;j<=y+1;j++) {
+            if (i>=0 && i<8 && j>=0 && j<8) {
                 const tile = board[i][j];
-                if (!tile.classList.contains('bombcontainer')) {
-                    // Increment the bomb count for non-bomb tiles
+                if(!tile.classList.contains('bombcontainer')){
                     let bombCount = parseInt(tile.querySelector('.tileback p').textContent);
                     bombCount++;
                     tile.querySelector('.tileback p').textContent = bombCount;
@@ -73,43 +73,36 @@ let emptytiles=tilefront.filter(tile=>tile.classList.contains('emptytile'));
 
 console.log(emptytiles)
 
-
-
-
-
-// Loop through bomb containers to set nearby bomb counts
-for (let i = 0; i < bombcontainers.length; i++) {
-    const [x, y] = bombcontainers[i];
-    incrementNearbyBombs(x, y);
+for (let i=0;i<bombcontainers.length;i++) {
+    const [x,y] = bombcontainers[i];
+    incrementNearbyBombs(x,y);
 }
 
-function revealAdjacentZeroes(x, y) {
+function revealAdjacentZeroes(x,y) {
     const adjacentTiles = [
-        [-1, -1], [-1, 0], [-1, 1],
-        [0, -1], /*[0, 0],*/ [0, 1],
-        [1, -1], [1, 0], [1, 1],
+        [-1,-1], [-1,0], [-1,1],
+        [0,-1],           [0,1],
+        [1,-1], [1,0], [1,1],
     ];
 
-    for (const [dx, dy] of adjacentTiles) {
-        const newX = x + dx;
-        const newY = y + dy;
+    for (const [dx,dy] of adjacentTiles) {
+        const newX = x+dx;
+        const newY = y+dy;
 
-        if (newX >= 0 && newX < 8 && newY >= 0 && newY < 8) {
+        if (newX>=0 && newX<8 && newY>=0 && newY<8) {
             const tile = board[newX][newY];
             const tileBack = tile.querySelector('.tileback p');
-            const isTileFrontDisplayed = tile.querySelector('.tilefront').style.display !== 'none';
+            const isTileFrontDisplayed = tile.querySelector('.tilefront').style.display!=='none';
 
             if (isTileFrontDisplayed && tileBack.textContent === '0') {
-                tile.querySelector('.tilefront').style.display = 'none';
+                tile.querySelector('.tilefront').style.display='none';
                 revealAdjacentZeroes(newX, newY);
             } else if (isTileFrontDisplayed && parseInt(tileBack.textContent) !== 0) {
-                tile.querySelector('.tilefront').style.display = 'none';
+                tile.querySelector('.tilefront').style.display='none';
             }
         }
     }
 }
-
-
 
 function checkIfGameWon() {
     let isGameWon = true;
@@ -125,19 +118,19 @@ function checkIfGameWon() {
 }
 
 tilefront.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        const x = Math.floor(index / 8);
-        const y = index % 8;
+    item.addEventListener('click',()=>{
+        const x=Math.floor(index / 8);
+        const y=index % 8;
 
         if (parseInt(item.nextElementSibling.querySelector('p').textContent) === 0) {
-            item.style.display = 'none';
-            revealAdjacentZeroes(x, y);
+            item.style.display='none';
+            revealAdjacentZeroes(x,y);
 
         if (checkIfGameWon()) {
-            location.href = "gameoverwin.html";
+            location.href="gameoverwin.html";
         }
     } else {
-        item.style.display = 'none';
+        item.style.display='none';
     }
     });
 });
@@ -146,18 +139,18 @@ tilefront.forEach((item, index) => {
 
 
  // Timer
- let finaltime = 0;
- let finalnoofclicks = 0;
- let time = document.getElementById('time');
- let seconds = 0;
+ let finaltime=0;
+ let finalnoofclicks=0;
+ let time=document.getElementById('time');
+ let seconds=0;
  let timer;
  
  function startTimer() {
-    timer = setInterval(() => {
+    timer = setInterval(()=>{
         seconds++;
         time.textContent = seconds;
         finaltime = seconds;
-    }, 1000);
+    },1000);
  }
  
  // Updating clicks
@@ -200,14 +193,12 @@ tilefront.forEach((item, index) => {
  })
 
 
-
 // tilefront.forEach(()=>{
 //     if(checkIfGameWon()){
 //         location.href = "gameoverwin.html";
 //     }
 // })
 
- // Call startgame only once
  startgame();
  displayname();
  startTimer();
